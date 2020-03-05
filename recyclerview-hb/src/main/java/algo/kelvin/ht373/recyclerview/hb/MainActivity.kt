@@ -1,7 +1,12 @@
 package algo.kelvin.ht373.recyclerview.hb
 
+import algo.kelvin.ht373.rv.hbf.*
+import algo.kelvin.ht373.rv.hbf.rb_recyclerview.recyclerViewHeaderBody
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_body.view.*
+import kotlinx.android.synthetic.main.item_header.view.*
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -35,5 +40,17 @@ class MainActivity : AppCompatActivity() {
         list.add(Province("Kalimantan Timur", "Samarinda"))
         list.add(Province("Kalimantan Barat", "Pontianak"))
         list.add(Province("Kalimantan Selatan", "Banjarmasin"))
+
+        rvProvince.recyclerViewHeaderBody<Island, Province>(list, this, R.layout.item_header, R.layout.item_body) {
+            dataItemHeader {
+                viewItemData.tvHeader.text = item?.island
+            }
+            dataItemBody {
+                viewItemData.tvProvince.text = item?.province
+                viewItemData.tvCityCapital.text = item?.cityCapital
+            }
+            setLayoutManager()
+            setAdapter()
+        }
     }
 }
