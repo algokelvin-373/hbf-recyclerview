@@ -38,7 +38,7 @@ class AdapterRecyclerViewHeaderBody(private val listData: ArrayList<Any>,
         itemData = listData[position]
         if (itemData != null) {
             try {
-                when(DefineTypeItemData<Province>().checkItemData(listData[position])) {
+                when(itemData!!.type()) {
                     1 -> {
                         Log.e("hbf-rf", "Body RV")
                         itemHolder.setItemListData(setupItemDataBody, itemData, position)
@@ -56,7 +56,7 @@ class AdapterRecyclerViewHeaderBody(private val listData: ArrayList<Any>,
     }
 
     override fun getItemViewType(position: Int): Int {
-        return DefineTypeItemData<Province>().checkItemData(listData[position])
+        return listData[position].type()
     }
 
     fun setDataItemBody(bindingBody: Binding<*>.() -> Unit) {
@@ -65,6 +65,11 @@ class AdapterRecyclerViewHeaderBody(private val listData: ArrayList<Any>,
 
     fun setDataItemHeader(bindingHeader: Binding<*>.() -> Unit) {
         this.setupItemDataHeader = bindingHeader
+    }
+
+    private fun Any.type(): Int {
+        return if (this is Province) 1
+        else 0
     }
 
 }
