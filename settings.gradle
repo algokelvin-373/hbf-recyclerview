@@ -1,2 +1,2 @@
-include ':app', ':app-hbf-recyclerview', ':recyclerview-hb'
+include ':app', ':app-hbf-recyclerview', ':recyclerview-hb', ':training-hb-recyclerview'
 rootProject.name='recyclerview-hbf'
